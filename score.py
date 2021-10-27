@@ -14,9 +14,22 @@ from inference_schema.schema_decorators import input_schema, output_schema
 from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
 from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
 
+input_sample = pd.DataFrame({
+    "fixed acidity": pd.Series([0.0], dtype="float64"), 
+    "volatile acidity": pd.Series([0.0], dtype="float64"), 
+    "citric acid": pd.Series([0.0], dtype="float64"),
+    "residual sugar": pd.Series([0.0], dtype="float64"),
+    "chlorides": pd.Series([0.0], dtype="float64"), 
+    "free sulfur dioxide": pd.Series([0.0], dtype="float64"), 
+    "total sulfur dioxide": pd.Series([0.0], dtype="float64"), 
+    "density": pd.Series([0.0], dtype="float64"), 
+    "pH": pd.Series([0.0], dtype="float64"), 
+    "sulphates": pd.Series([0.0], dtype="float64"), 
+    "alcohol": pd.Series([0.0], dtype="float64"), 
+    "quality": pd.Series([0], dtype="int64")})
 
-input_sample = pd.DataFrame({"fixed acidity": pd.Series([0.0], dtype="float64"), "volatile acidity": pd.Series([0.0], dtype="float64"), "citric acid": pd.Series([0.0, dtype="float64"), "residual sugar": pd.Series([0.0], dtype="float64"), "chlorides": pd.Series([0.0], dtype="float64"), "free sulfur dioxide": pd.Series([0.0], dtype="float64"), "total sulfur dioxide": pd.Series([0.0], dtype="float64"), "density": pd.Series([0.0], dtype="float64"), "pH": pd.Series([0.0], dtype="float64"), "sulphates": pd.Series([0.0], dtype="float64"), "alcohol": pd.Series([0.0], dtype="float64"), "quality": pd.Series([0], dtype="int64")})
 output_sample = np.array([0])
+
 try:
     log_server.enable_telemetry(INSTRUMENTATION_KEY)
     log_server.set_verbosity('INFO')
