@@ -9,50 +9,43 @@ from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
-from azureml.core import Workspace, Datastore, Dataset
 
-ws = Workspace.from_config()
 
-# azureml-core of version 1.0.72 or higher is required
-# azureml-dataprep[pandas] of version 1.1.34 or higher is required
 
-# create tabular dataset from a single file in datastore
+# ds = TabularDatasetFactory.from_delimited_files(path='https://ml.azure.com/fileexplorerAzNB?wsid=/subscriptions/9b72f9e6-56c5-4c16-991b-19c652994860/resourceGroups/aml-quickstarts-162678/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-162678&tid=660b3398-b80e-49d2-bc5b-ac1dc93b5254&activeFilePath=Users/odl_user_162678/wine-classification.csv')
 
-key = "wine_classification"
-
-if key in ws.datasets.keys(): 
-        found = True
-        dataset= ws.datasets[key] 
-
-df = dataset.to_pandas_dataframe()
+# print(ds.to_pandas_dataframe().head())
 
 run = Run.get_context()
 
-print(df)
-    
-# x, y = clean_data(ds)
+# x_df = ds.to_pandas_dataframe().dropna()
 
-# x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
+x_df = pd.read_csv("./wine-classification.csv")
 
-# def main():
-#     # Add arguments to script
-#     parser = argparse.ArgumentParser()
+x = x_df.iloc[:,1:-1]
+y = x_df.pop('y')
 
-#     parser.add_argument('--C', type=float, default=1.0, help="Inverse of regularization strength. Smaller values cause stronger regularization")
-#     parser.add_argument('--max_iter', type=int, default=100, help="Maximum number of iterations to converge")
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
 
-#     args = parser.parse_args()
+def main():
+    # Add arguments to script
+    parser = argparse.ArgumentParser()
 
-#     run.log("Regularization Strength:", np.float(args.C))
-#     run.log("Max iterations:", np.int(args.max_iter))
+    parser.add_argument('--C', type=float, default=1.0, help="Inverse of regularization strength. Smaller values cause stronger regularization")
+    parser.add_argument('--max_iter', type=int, default=100, help="Maximum number of iterations to converge")
 
-#     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
+    args = parser.parse_args()
 
-#     accuracy = model.score(x_test, y_test)
-#     run.log("Accuracy", np.float(accuracy))
+    run.log("Regularization Strength:", np.float(args.C))
+    run.log("Max iterations:", np.int(args.max_iter))
 
-#     os.makedirs('outputs', exist_ok=True)
-#     joblib.dump(value=model, filename='outputs/model.joblib')
+    model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
+
+    accuracy = model.score(x_test, y_test)
+    run.log("Accuracy", np.float(accuracy))
+
+    os.makedirs('outputs', exist_ok=True)
+    joblib.dump(value=model, filename='outputs/model.joblib')
 
 if __name__ == '__main__':
     main()
