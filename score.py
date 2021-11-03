@@ -1,3 +1,6 @@
+# ---------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# ---------------------------------------------------------
 import json
 import logging
 import os
@@ -13,27 +16,16 @@ from azureml.telemetry import INSTRUMENTATION_KEY
 from inference_schema.schema_decorators import input_schema, output_schema
 from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
 from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
+from inference_schema.parameter_types.standard_py_parameter_type import StandardPythonParameterType
 
-input_sample = pd.DataFrame({
-    "fixed acidity": pd.Series([0.0], dtype="float64"), 
-    "volatile acidity": pd.Series([0.0], dtype="float64"), 
-    "citric acid": pd.Series([0.0], dtype="float64"),
-    "residual sugar": pd.Series([0.0], dtype="float64"),
-    "chlorides": pd.Series([0.0], dtype="float64"), 
-    "free sulfur dioxide": pd.Series([0.0], dtype="float64"), 
-    "total sulfur dioxide": pd.Series([0.0], dtype="float64"), 
-    "density": pd.Series([0.0], dtype="float64"), 
-    "pH": pd.Series([0.0], dtype="float64"), 
-    "sulphates": pd.Series([0.0], dtype="float64"), 
-    "alcohol": pd.Series([0.0], dtype="float64"), 
-    "quality": pd.Series([0], dtype="int64")})
-
+input_sample = pd.DataFrame({"Column2": pd.Series(["example_value"], dtype="object"), "fixed acidity": pd.Series([0.0], dtype="float64"), "volatile acidity": pd.Series([0.0], dtype="float64"), "citric acid": pd.Series([0.0], dtype="float64"), "residual sugar": pd.Series([0.0], dtype="float64"), "chlorides": pd.Series([0.0], dtype="float64"), "free sulfur dioxide": pd.Series([0.0], dtype="float64"), "total sulfur dioxide": pd.Series([0.0], dtype="float64"), "density": pd.Series([0.0], dtype="float64"), "pH": pd.Series([0.0], dtype="float64"), "sulphates": pd.Series([0.0], dtype="float64"), "alcohol": pd.Series([0.0], dtype="float64"), "quality": pd.Series([0], dtype="int64")})
 output_sample = np.array([0])
+method_sample = StandardPythonParameterType("predict")
 
 try:
     log_server.enable_telemetry(INSTRUMENTATION_KEY)
     log_server.set_verbosity('INFO')
-    logger = logging.getLogger('azureml.automl.core.score_script')
+    logger = logging.getLogger('azureml.automl.core.scoring_script')
 except:
     pass
 
@@ -54,12 +46,19 @@ def init():
         logging_utilities.log_traceback(e, logger)
         raise
 
-
+@input_schema('method', method_sample, convert_to_provided_type=False)
 @input_schema('data', PandasParameterType(input_sample))
 @output_schema(NumpyParameterType(output_sample))
-def run(data):
+def run(data, method="predict"):
     try:
-        result = model.predict(data)
+        if method == "predict_proba":
+            result = model.predict_proba(data)
+        elif method == "predict":
+            result = model.predict(data)
+        else:
+            raise Exception(f"Invalid predict method argument received ({method})")
+        if isinstance(result, pd.DataFrame):
+            result = result.values
         return json.dumps({"result": result.tolist()})
     except Exception as e:
         result = str(e)
