@@ -1,6 +1,13 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
+# Predicting Wine Type using Azure ML
+[![Azure](https://img.shields.io/badge/Azure-MLOps-blue)](https://www.credly.com/badges/2f897b9d-cd69-44af-a94a-511eb732b19c/linked_in)
+[![Udacity](https://img.shields.io/badge/Udacity-Operationalizing%20ML-blue)](https://www.udacity.com/course/machine-learning-engineer-for-microsoft-azure-nanodegree--nd00333)
 
-# Your Project Title Here
+## Table of contents
+* [Project Set Up and Installation](#Project-Set-Up-and-Installation)
+* [Architectural Diagram](#Architectural-Diagram)
+* [Key Steps](#Key-Steps)
+* [Screen Recording](#Screen-Recording)
+* [Future work](#Future-work)
 
 *TODO:* Write a short introduction to your project.
 
