@@ -3,12 +3,16 @@
 [![Udacity](https://img.shields.io/badge/Udacity-Operationalizing%20ML-blue)](https://www.udacity.com/course/machine-learning-engineer-for-microsoft-azure-nanodegree--nd00333)
 
 ## Table of contents
+* [Overview](#Overview)
 * [Project Set Up and Installation](#Project-Set-Up-and-Installation)
-* [Architectural Diagram](#Architectural-Diagram)
-* [Key Steps](#Key-Steps)
+* [Dataset](#Dataset)
+* [Automated ML](#Automated-ML)
+* [Hyperparameter Tuning](#Hyperparameter-Tuning)
+* [Model Deployment](#Model-Deployment)
 * [Screen Recording](#Screen-Recording)
-* [Future work](#Future-work)
 
+
+## Overview
 *TODO:* Write a short introduction to your project.
 
 ## Project Set Up and Installation
