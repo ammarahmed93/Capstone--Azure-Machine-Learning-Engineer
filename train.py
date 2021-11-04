@@ -21,6 +21,7 @@ run = Run.get_context()
 # x_df = ds.to_pandas_dataframe().dropna()
 
 x_df = pd.read_csv("./wine-classification.csv")
+x_df.dropna(inplace=True)
 
 x = x_df.iloc[:,1:-1]
 y = x_df.pop('y')
