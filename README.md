@@ -139,14 +139,11 @@ Bayesian sampling is based on Bayesian optimization algorithm and similar to Gri
 The Random sampling was chosen as it results in faster hyperparemter tuning and it also supports early termination of low-performance runs. 
 However, if the time and budget was not an issue, the Grid sampling would yield to the most optimal hyperparameters. For the search space, it can be discrete or continous. 
 In the bove code snippet, the *choice* specific discrete values search and *uniform* specifies continous hyperparameters. 
-More information regarding the parameter sample and search space can be found in the [Azure-documentation](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/)
-
-<br/>
-The *BanditPolicy* method was used to define early stopping based on the slack criteria and evaluation interval.  
+More information regarding the parameter sample and search space can be found in the [Azure-documentation](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/).  
+The *BanditPolicy* method was used to define early stopping based on the slack criteria and evaluation interval.
 ```
 policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
 ```
-<br/>  
 * *evaluation_interval*: the frequency for applying the policy.
 * *slack_factor**: the ratio used to calculate the allowed distance from the best performing experiment run.
 
@@ -157,11 +154,13 @@ Based on the defined parameters in the code snippet above, the early termination
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it? <br>
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters. <br>
+*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20hyperdrive%20RunWidget.png?raw=true)
 
 <br>
-The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 as shown in the screenshot below: <br>
+The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 as shown in the screenshot below:
+
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG?raw=true)
 
 ## Model Deployment
