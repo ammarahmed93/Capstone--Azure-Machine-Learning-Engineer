@@ -87,12 +87,12 @@ automl_config = AutoMLConfig(compute_target=compute_target,
 ```
 
 
-_n_crossvalidations : The cross validation was provided to perform k-fold cross-validation. This parameter sets how many cross validations to perfotm, based on the same number of folds. In this case, 3 folds are used for cross-validation. Therefore 3 different trainings are performed with each training using 2/3 of the data and each validation using 1/3 of the data with a different holdout fold each time. The metrics are calculated with the average of the five validation metrics. <br>
-_experiment_timeoutminutes: In this case the maximum time that each iteration can run for is 20 minutes. if the iteration reaches the time limit then it will terminate. <br>
-_enable_earlystopping: When enabling early termination, if the score is not improving in the short term after the first 20 iterations then the experiment will terminate. <br>
-_max_concurrentiterations: The maximum number of iterations that would be execute in parallel, in this case 4 parallel iterations at max. This is dependent on the number of nodes provisioned and has to be one less than the provisioned nodes.<br>
-_primarymetric: The metric that the AutoML will optimize for the model selection. The "AUC_weighted" was chosen in this case as its better metric for imblanced data.<br>
-_compute_target_: The compute cluster that the automl will be running on <br>
+*n_crossvalidations* : The cross validation was provided to perform k-fold cross-validation. This parameter sets how many cross validations to perfotm, based on the same number of folds. In this case, 3 folds are used for cross-validation. Therefore 3 different trainings are performed with each training using 2/3 of the data and each validation using 1/3 of the data with a different holdout fold each time. The metrics are calculated with the average of the five validation metrics. <br>
+*experiment_timeoutminutes*: In this case the maximum time that each iteration can run for is 20 minutes. if the iteration reaches the time limit then it will terminate. <br>
+*enable_earlystopping*: When enabling early termination, if the score is not improving in the short term after the first 20 iterations then the experiment will terminate. <br>
+*max_concurrentiterations*: The maximum number of iterations that would be execute in parallel, in this case 4 parallel iterations at max. This is dependent on the number of nodes provisioned and has to be one less than the provisioned nodes.<br>
+_primarymetric_: The metric that the AutoML will optimize for the model selection. The "AUC_weighted" was chosen in this case as its better metric for imblanced data.<br>
+*compute_target*: The compute cluster that the automl will be running on <br>
 _path_: The path to the Azure ML project folder. <br>
 _featurization_: performs featuratization automatically such as imputation, encoding categorical variables ...etc. <br>
 _debug_log_: The file to write the debug information. <br>
