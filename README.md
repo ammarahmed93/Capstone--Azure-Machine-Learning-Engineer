@@ -122,15 +122,16 @@ The results can be improved by enabling the DNN in the settings, however, this w
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search <br>
 The model used for second approach was the logistic regression from Scikit-learn. The logistic regression model was implemented for simplicity reasons as the main focus of this project is operatinalizing ML in Azure and not building the most sophisticated and accurate model. The logistic regression is suited well for binary classification problem and can be setup and trained easily. The model has two main hyperparamters the C and max iterations. The Azure HyperDrive was used to tune both parameters. For the Hyperdrive to tune the parameters, the parameter sampler had to be defined first. For the logistic regression, the two parameters were defined in the parameter sampler as follows:
+
 ```
 ps = RandomParameterSampling({
     "--C": uniform(0.03, 1),
     "--max_iter": choice(50, 100, 150, 200, 300)
 })
 ```
+
 <br>
-There are three choices for the sampling methods: Random sampling, Grid sampling, and Bayesian sampling. The grid sampling is the most expensive one as its an exhaustive search over the hyperparameter space. Bayesian sampling is based on Bayesian optimization algorithm and similar to Grid sampling, it is recommended if we have enough budget to explore the hyperparamter space. The Random sampling was chosen as it results in faster hyperparemter tuning and it also supports early termination of low-performance runs. However, if the time and budget was not an issue, the Grid sampling would yield to the most optimal hyperparameters. <br> 
-For the search space, it can be discrete or continous. In the bove code snippet, the **choice** specific discrete values search and **uniform** specifies continous hyperparameters. More information regarding the parameter sample and search space can be found in the [Azure documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters).
+There are three choices for the sampling methods: Random sampling, Grid sampling, and Bayesian sampling. The grid sampling is the most expensive one as its an exhaustive search over the hyperparameter space. Bayesian sampling is based on Bayesian optimization algorithm and similar to Grid sampling, it is recommended if we have enough budget to explore the hyperparamter space. The Random sampling was chosen as it results in faster hyperparemter tuning and it also supports early termination of low-performance runs. However, if the time and budget was not an issue, the Grid sampling would yield to the most optimal hyperparameters. For the search space, it can be discrete or continous. In the bove code snippet, the **choice** specific discrete values search and **uniform** specifies continous hyperparameters. More information regarding the parameter sample and search space can be found in the [Azure documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters).
 <br>
 The _BanditPolicy_ method was used to define early stopping based on the slack criteria and evaluation interval.
 ```
@@ -150,7 +151,7 @@ Based on the defined parameters in the code snippet above, the early termination
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20hyperdrive%20RunWidget.png)
 
 <br>
-The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 as shown in the screenshot below:
+The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 as shown in the screenshot below: <br>
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG?raw=true)
 
 ## Model Deployment
