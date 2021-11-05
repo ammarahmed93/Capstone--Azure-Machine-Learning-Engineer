@@ -178,14 +178,14 @@ The model deployed was the one from the AutoML experiment. The following are the
 * **Register the best performing model**
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20automl%20register%20best%20model.png)
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20automl%20register%20best%20model-%202.PNG)
-* Preparing the scoring script
+* Preparing the scoring script  
 The script [```score.py```](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/score.py) was used as the entry script (in the next step) for scoring the model. 
 * Defining the inference config  
 The function _InferenceConfig_ was used to specify the inference configuration. In this case, the _environment_ was the same one as the environment that was used for training the deployed model.
 ```
 inference_config = InferenceConfig(source_directory="./source_dir", entry_script="./score.py", environment=environment)
 ```
-* Deployment as an ACI webservice
+* Deployment as an ACI webservice  
 The _'AciWebservice'_ class (as shown in the code snippet below) deploys an ML model as web service endpoint on AZure Container Instance (ACI). The parameters passed to the method _.deploy_configuration_ takes the following paramters:
   * *cpu_cores*: The stands for the number of CPU core to allocate for the webservice.
   * *memory_gb*: The size of memory (in gb) to allocate for the deployed service.
@@ -203,10 +203,10 @@ service.wait_for_deployment(show_output =True)
 * Checking deployment status
   * Checking logs: 
   ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/step%202%20deployed%20aci.PNG)
-  * Verifying status in the Azure ML studio (Healthy status)
+  * Verifying status in the Azure ML studio (Healthy status)  
   [!diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/healthy%20deployment.PNG)
 * Consuming the model by sending sample data to the endpoint
-The following code was used to consume the model and testing the endpoint:
+The following code was used to consume the model and testing the endpoint:  
 [!diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/testing%20endpoint.PNG)
 Based on the data sent to the endpoint the model sent back the prediction as '1' which stands for red wine. 
 
