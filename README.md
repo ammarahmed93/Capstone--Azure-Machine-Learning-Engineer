@@ -153,12 +153,12 @@ Based on the defined parameters in the code snippet above, the early termination
 
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it? <br>
-The accuracy obtained wa an accuracy of 0.975 which is slightly lower than the AutoML experimen. The table below summarized the paramteres and accuracy for the best performing model:  
+The accuracy obtained from the best performing model was 0.975 which is slightly lower than the AutoML experimen. The table below summarized the paramteres and accuracy for the best performing model:  
 | Parameter |  Weight | 
 | :---: | :---: | 
 | C | 0.884 |
 | max_iter | 1000 |
-| :---: | :---: | 
+| **----** | **----**  | 
 | accuracy | 0.975 |
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
@@ -173,7 +173,42 @@ The accuracy obtained wa an accuracy of 0.975 which is slightly lower than the A
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/step%202-%20hyperdrive%20visualize%20the%20progress%20of%20runs.PNG)
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.  
+The model deployed was the one from the AutoML experiment. The following are the main steps performed to deploy the model:
+* **Register the best performing model**
+![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20automl%20register%20best%20model.png)
+![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20automl%20register%20best%20model-%202.PNG)
+* Preparing the scoring script
+The script [```score.py```](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/score.py) was used as the entry script (in the next step) for scoring the model. 
+* Defining the inference config  
+The function _InferenceConfig_ was used to specify the inference configuration. In this case, the _environment_ was the same one as the environment that was used for training the deployed model.
+```
+inference_config = InferenceConfig(source_directory="./source_dir", entry_script="./score.py", environment=environment)
+```
+* Deployment as an ACI webservice
+The _'AciWebservice'_ class (as shown in the code snippet below) deploys an ML model as web service endpoint on AZure Container Instance (ACI). The parameters passed to the method _.deploy_configuration_ takes the following paramters:
+  * *cpu_cores*: The stands for the number of CPU core to allocate for the webservice.
+  * *memory_gb*: The size of memory (in gb) to allocate for the deployed service.
+  * *auth_enabled*: To enable authentication when sending data to the model endpoint.
+  * *enable_app_insights*: To enable Application insights for the webservice.
+```
+deployment_config = AciWebservice.deploy_configuration(cpu_cores = 1,
+                                                     memory_gb = 1,
+                                                     auth_enabled = True,
+                                                     enable_app_insights = True)
+
+service = Model.deploy(ws, 'wine-classification-aciservice', [automl_model], inference_config, deployment_config, overwrite=True)
+service.wait_for_deployment(show_output =True)
+```
+* Checking deployment status
+  * Checking logs: 
+  ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/step%202%20deployed%20aci.PNG)
+  * Verifying status in the Azure ML studio (Healthy status)
+  [!diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/healthy%20deployment.PNG)
+* Consuming the model by sending sample data to the endpoint
+The following code was used to consume the model and testing the endpoint:
+[!diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/testing%20endpoint.PNG)
+Based on the data sent to the endpoint the model sent back the prediction as '1' which stands for red wine. 
 
 ## Screen Recording
 *TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
@@ -181,5 +216,4 @@ The accuracy obtained wa an accuracy of 0.975 which is slightly lower than the A
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
 
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+
