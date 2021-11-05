@@ -99,6 +99,8 @@ automl_config = AutoMLConfig(compute_target=compute_target,
 * _task_: "classification" since its a binary classification task.
 <br>
 ref: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cross-validation-data-splits
+<br>
+
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
 
