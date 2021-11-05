@@ -152,7 +152,7 @@ Based on the defined parameters in the code snippet above, the early termination
 
 <br>
 The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 as shown in the screenshot below: <br>
-![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG?raw=true)
+![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG)
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
