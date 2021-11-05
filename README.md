@@ -148,11 +148,11 @@ Based on the defined parameters in the code snippet above, the early termination
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it? <br>
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters. <br>
-![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20hyperdrive%20RunWidget.png)
+![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20hyperdrive%20RunWidget.png?raw=true)
 
 <br>
 The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 as shown in the screenshot below: <br>
-![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG)
+![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG?raw=true)
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
