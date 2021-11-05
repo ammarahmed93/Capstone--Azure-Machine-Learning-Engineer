@@ -27,12 +27,39 @@ The following files are necessary for the project setup:
 
 ### Overview
 *TODO*: Explain about the data you are using and where you got it from.
+The dataset used for this project can be obtained from the [Wine Quality- UCI Repo](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The dataset contains two seprate csv files for each the white and red wine qualities. Both dataset were combined and the red wine was assigned a value of 1 and white wine as 0 in the target column "y". The final merged csv file was uploaded to github. The data contains 6,598 rows and 13 columns including the target column. 
 
 ### Task
 *TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+The goal is to predict the wine type (red or white wine) based on the given properties such as pH, alchohol ...etc. Therefore this is a binary classification task. A target of one stands for red winde and 0 for white wine.
 
 ### Access
 *TODO*: Explain how you are accessing the data in your workspace.
+The data was made publicly available through github. To access the data in the workspace, it was registerd in the workspace by providing the full path of the data along with the name and workspace. The code snippet below shows how the data being accessed and registerd in the Azure workspace 
+```
+found = False
+description_text = "Wine Quality DataSet for Udacity Capstone Project"
+key = 'wine-classification'
+
+if key in ws.datasets.keys(): 
+    found = True
+    dataset = ws.datasets[key] 
+
+if not found:
+    # Create AML Dataset and register it into Workspace
+    whiteWine_data = 'https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/wine-classification.csv'
+    dataset = Dataset.Tabular.from_delimited_files(whiteWine_data, separator=',')        
+      
+    #Register Dataset in Workspace
+    dataset = whiteWine_dataset.register(workspace=ws,
+                                   name=key,
+                                   description=description_text)
+
+
+df = dataset.to_pandas_dataframe()
+df.describe()
+```
+However, for the hyperdrive experiment, the data was manually uploaded and placed within the same directory as the train.py. 
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
