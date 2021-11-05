@@ -145,7 +145,7 @@ The *BanditPolicy* method was used to define early stopping based on the slack c
 policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
 ```
 * *evaluation_interval*: the frequency for applying the policy.
-* *slack_factor**: the ratio used to calculate the allowed distance from the best performing experiment run.
+* *slack_factor*: the ratio used to calculate the allowed distance from the best performing experiment run.
 
 Based on the defined parameters in the code snippet above, the early termination policy is applied at every other interval when metrics are reported. For instance, if the best performing run at interval 2 reported a primary metric is 0.8. If the policy specify a _slack_factor_ of 0.1, any training runs whose best metric at interval 2 is less than 0.73 (0.8/(1+_slack_factor_)) will be terminated.
 
@@ -159,9 +159,12 @@ Based on the defined parameters in the code snippet above, the early termination
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20hyperdrive%20RunWidget.png?raw=true)
 
 <br>
-The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 as shown in the screenshot below:
-
+The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 and the accuracy was 0.975 as shown in the screenshot below:
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG?raw=true)
+
+![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams.PNG?raw=true)
+
+![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/step%202-%20hyperdrive%20visualize%20the%20progress%20of%20runs.PNG)
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
