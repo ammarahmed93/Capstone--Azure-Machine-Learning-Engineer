@@ -112,8 +112,10 @@ The best model that was trained was the VotingEnsemble. The model Achieved an ac
 * **RunWidget**
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202-Automl%20RunWidget.PNG)
 <br>
+
 * **Parameters of the Best model trained**
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20-automl%20best%20model%20ID.png)
+
 <br>
 The results can be improved by enabling the DNN in the settings, however, this would require a higher computations. 
 
