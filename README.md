@@ -153,17 +153,23 @@ Based on the defined parameters in the code snippet above, the early termination
 
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it? <br>
+The accuracy obtained wa an accuracy of 0.975 which is slightly lower than the AutoML experimen. The table below summarized the paramteres and accuracy for the best performing model:  
+| Parameter |  Weight | 
+| :---: | :---: | 
+| C | 0.884 |
+| max_iter | 1000 |
+| :---: | :---: | 
+| accuracy | 0.975 |
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
-
+* **RunDetails widget**:
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20hyperdrive%20RunWidget.png?raw=true)
 
-<br>
-The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 and the accuracy was 0.975 as shown in the screenshot below:
+* **Best model params (jupyter Notebook)**:
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG?raw=true)
-
+* **Best model (studio)**:
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams.PNG?raw=true)
-
+* **Visualizing performance based on the different params evaluated**:
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/step%202-%20hyperdrive%20visualize%20the%20progress%20of%20runs.PNG)
 
 ## Model Deployment
