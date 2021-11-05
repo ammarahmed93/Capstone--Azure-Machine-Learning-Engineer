@@ -102,13 +102,20 @@ ref: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cr
 <br>
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it? <br>
+The best model that was trained was the VotingEnsemble. The model Achieved an accuracy of 0.999 
+* **Need a screenshot of the model with the actual metrics**
+* **Screenshot of the Data Guardrails**
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+<br>
 **RunWidget**
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202-Automl%20RunWidget.PNG)
+<br>
 **Parameters of the Best model trained**
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20-automl%20best%20model%20ID.png)
+<br>
+The results can be improved by enabling the DNN in the settings, however, this would require a higher computations. 
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
