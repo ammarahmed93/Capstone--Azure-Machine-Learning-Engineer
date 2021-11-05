@@ -141,16 +141,12 @@ However, if the time and budget was not an issue, the Grid sampling would yield 
 In the bove code snippet, the *choice* specific discrete values search and *uniform* specifies continous hyperparameters. 
 More information regarding the parameter sample and search space can be found in the [Azure-documentation](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/)
 
-There are three choices for the sampling methods: Random sampling, Grid sampling, and Bayesian sampling. The grid sampling is the most expensive one as its an exhaustive search over the hyperparameter space. Bayesian sampling is based on Bayesian optimization algorithm and similar to Grid sampling, it is recommended if we have enough budget to explore the hyperparamter space. The Random sampling was chosen as it results in faster hyperparemter tuning and it also supports ealry termination of low-performance runs. However, if the time and budget was not an issue, the Grid sampling would yield to the most optimal hyperparameters.  <br> For the search space, it can be discrete or continous. In the bove code snippet, the **choice** specific discrete values search and **uniform** specifies continous hyperparameters. More information regarding the parameter sample and search space can be found in the [Azure documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters).
-
-
-<br>
-The *BanditPolicy* method was used to define early stopping based on the slack criteria and evaluation interval.
-
+<br/>
+The *BanditPolicy* method was used to define early stopping based on the slack criteria and evaluation interval.  
 ```
 policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
 ```
-<br>
+<br/>  
 * *evaluation_interval*: the frequency for applying the policy.
 * *slack_factor**: the ratio used to calculate the allowed distance from the best performing experiment run.
 
