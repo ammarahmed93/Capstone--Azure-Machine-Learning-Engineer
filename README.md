@@ -204,10 +204,10 @@ service.wait_for_deployment(show_output =True)
   * Checking logs: 
   ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/step%202%20deployed%20aci.PNG)
   * Verifying status in the Azure ML studio (Healthy status)  
-  [!diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/healthy%20deployment.PNG)
+  ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/healthy%20deployment.PNG)
 * Consuming the model by sending sample data to the endpoint
 The following code was used to consume the model and testing the endpoint:  
-[!diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/testing%20endpoint.PNG)
+ ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/testing%20endpoint.PNG)
 Based on the data sent to the endpoint the model sent back the prediction as '1' which stands for red wine. 
 
 ## Screen Recording
