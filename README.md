@@ -120,13 +120,38 @@ The best model that was trained was the VotingEnsemble. The model Achieved an ac
 The results can be improved by enabling the DNN in the settings, however, this would require a higher computations. 
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search <br>
+The model used for second approach was the logistic regression from Scikit-learn. The logistic regression model was implemented for simplicity reasons as the main focus of this project is operatinalizing ML in Azure and not building the most sophisticated and accurate model. The logistic regression is suited well for binary classification problem and can be setup and trained easily. The model has two main hyperparamters the C and max iterations. The Azure HyperDrive was used to tune both parameters. For the Hyperdrive to tune the parameters, the parameter sampler had to be defined first. For the logistic regression, the two parameters were defined in the parameter sampler as follows:
+```
+ps = RandomParameterSampling({
+    "--C": uniform(0.03, 1),
+    "--max_iter": choice(50, 100, 150, 200, 300)
+})
+```
+<br>
+There are three choices for the sampling methods: Random sampling, Grid sampling, and Bayesian sampling. The grid sampling is the most expensive one as its an exhaustive search over the hyperparameter space. Bayesian sampling is based on Bayesian optimization algorithm and similar to Grid sampling, it is recommended if we have enough budget to explore the hyperparamter space. The Random sampling was chosen as it results in faster hyperparemter tuning and it also supports early termination of low-performance runs. However, if the time and budget was not an issue, the Grid sampling would yield to the most optimal hyperparameters. <br> 
+For the search space, it can be discrete or continous. In the bove code snippet, the **choice** specific discrete values search and **uniform** specifies continous hyperparameters. More information regarding the parameter sample and search space can be found in the [Azure documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters).
+<br>
+The _BanditPolicy_ method was used to define early stopping based on the slack criteria and evaluation interval.
+```
+policy = BanditPolicy(evaluation_interval=2, slack_factor=0.1)
+```
+_evaluation_interval_: the frequency for applying the policy.
+_slack_factor_: the ratio used to calculate the allowed distance from the best performing experiment run.
+
+Based on the defined parameters in the code snippet above, the early termination policy is applied at every other interval when metrics are reported. For instance, if the best performing run at interval 2 reported a primary metric is 0.8. If the policy specify a _slack_factor_ of 0.1, any training runs whose best metric at interval 2 is less than 0.73 (0.8/(1+_slack_factor_)) will be terminated.
+
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it? <br>
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters. <br>
+![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20hyperdrive%20RunWidget.png)
+
+<br>
+The best run hyperparameters for this experiment was C=0.884 and max_iter=1000 as shown in the screenshot below:
+![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/hyperdrive-%20best%20model%20with%20hyperparams%20jupyter.PNG?raw=true)
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
