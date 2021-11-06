@@ -26,15 +26,12 @@ The following files are necessary for the project setup:
 ## Dataset
 
 ### Overview
-*TODO*: Explain about the data you are using and where you got it from. <br>
 The dataset used for this project can be obtained from the [Wine Quality- UCI Repo](https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/). The dataset contains two seprate csv files for each the white and red wine qualities. Both dataset were combined and the red wine was assigned a value of 1 and white wine as 0 in the target column "y". The final merged csv file was uploaded to github. The data contains 6,598 rows and 13 columns including the target column. 
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it. <br>
 The goal is to predict the wine type (red or white wine) based on the given properties such as pH, alchohol ...etc. Therefore this is a binary classification task. A target of one stands for red winde and 0 for white wine.
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace. <br>
 The data was made publicly available through github. To access the data in the workspace, it was registerd in the workspace by providing the full path of the data along with the name and workspace. The code snippet below shows how the data being accessed and registerd in the Azure workspace 
 ```
 found = False
@@ -62,7 +59,6 @@ df.describe()
 However, for the hyperdrive experiment, the data was manually uploaded and placed within the same directory as the train.py. 
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment <br>
 The following snippet was the settings for the automl:
 ```
 # automl settings
@@ -102,13 +98,14 @@ automl_config = AutoMLConfig(compute_target=compute_target,
 <br>
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it? <br>
-The best model that was trained was the VotingEnsemble. The model Achieved an accuracy of 0.999 
-* **Need a screenshot of the model with the actual metrics**
-* **Screenshot of the Data Guardrails**
+The best model that was trained was the VotingEnsemble. The model Achieved an accuracy of 0.999. Below is a screenshot of the best performing model in Azure ML studio.  
+![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/automl.png)
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
-<br>
+
+* **Data Guardrails**
+![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/automl%20data%20guardrails.png)
+
+
 * **RunWidget**
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202-Automl%20RunWidget.PNG)
 <br>
@@ -120,7 +117,6 @@ The best model that was trained was the VotingEnsemble. The model Achieved an ac
 The results can be improved by enabling the DNN in the settings, however, this would require a higher computations. 
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search <br>
 
 The model used for second approach was the logistic regression from Scikit-learn. The logistic regression model was implemented for simplicity reasons as the main focus of this project is operatinalizing ML in Azure and not building the most sophisticated and accurate model. The logistic regression is suited well for binary classification problem and can be setup and trained easily. The model has two main hyperparamters the C and max iterations. The Azure HyperDrive was used to tune both parameters. For the Hyperdrive to tune the parameters, the parameter sampler had to be defined first. For the logistic regression, the two parameters were defined in the parameter sampler as follows:
 
@@ -152,7 +148,6 @@ Based on the defined parameters in the code snippet above, the early termination
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it? <br>
 The accuracy obtained from the best performing model was 0.975 which is slightly lower than the AutoML experimen. The table below summarized the paramteres and accuracy for the best performing model:  
 | Parameter |  Weight | 
 | :---: | :---: | 
@@ -161,7 +156,6 @@ The accuracy obtained from the best performing model was 0.975 which is slightly
 | **----** | **----**  | 
 | accuracy | 0.975 |
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 * **RunDetails widget**:
 ![img](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20hyperdrive%20RunWidget.png?raw=true)
 
@@ -173,7 +167,6 @@ The accuracy obtained from the best performing model was 0.975 which is slightly
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/step%202-%20hyperdrive%20visualize%20the%20progress%20of%20runs.PNG)
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.  
 The model deployed was the one from the AutoML experiment. The following are the main steps performed to deploy the model:
 * **Register the best performing model**
 ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/Step%202%20automl%20register%20best%20model.png)
@@ -211,9 +204,7 @@ The following code was used to consume the model and testing the endpoint:
 Based on the data sent to the endpoint the model sent back the prediction as '1' which stands for red wine. 
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+https://drive.google.com/file/d/1YuwHo58qR4aTYwMdEo29NzMKfl9M0TbO/view?usp=sharing
+
 
 
