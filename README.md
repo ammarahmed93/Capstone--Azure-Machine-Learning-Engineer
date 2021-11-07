@@ -203,8 +203,7 @@ The following code was used to consume the model and testing the endpoint:
  ![diagram](https://github.com/ammarahmed93/Capstone--Azure-Machine-Learning-Engineer/blob/main/img/testing%20endpoint.PNG)
 Based on the data sent to the endpoint the model sent back the prediction as '1' which stands for red wine. 
 
-## Screen Recording
-https://drive.google.com/file/d/1YuwHo58qR4aTYwMdEo29NzMKfl9M0TbO/view?usp=sharing
+
 
 
 
