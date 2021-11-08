@@ -1,6 +1,6 @@
 # Predicting Wine Type using Azure ML
-[![Azure](https://img.shields.io/badge/Azure-MLOps-blue)](https://www.credly.com/badges/2f897b9d-cd69-44af-a94a-511eb732b19c/linked_in)
-[![Udacity](https://img.shields.io/badge/Udacity-Operationalizing%20ML-blue)](https://graduation.udacity.com/api/graduation/certificate/CCVQRDUY/download)
+[![Azure](https://img.shields.io/badge/Certificate-blue)](https://www.credly.com/badges/2f897b9d-cd69-44af-a94a-511eb732b19c/linked_in)
+[![Udacity](https://img.shields.io/badge/Certificate-blue)](https://graduation.udacity.com/api/graduation/certificate/CCVQRDUY/download)
 
 
 ## Table of contents
